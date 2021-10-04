@@ -5,9 +5,9 @@ module.exports = function (sequelize) {
         "User",
         {
             id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4,
                 allowNull: false,
-                autoIncrement: true,
                 unique: true,
                 primaryKey: true,
             },
