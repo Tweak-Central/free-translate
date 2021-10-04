@@ -1,7 +1,7 @@
-<h1 align="center"> Free-late</h1>
+<h1 align="center"> Freelate</h1>
 
 <p align="center">
-  Free-late is an open-source translation website which makes it easier for companies to support multiples languages. 🌐
+  Freelate is an open-source translation website which makes it easier for companies to support multiples languages. 🌐
 </p>
 
 
@@ -21,12 +21,12 @@ ___
 
 ## Found a bug?
 
-We do all our bug reporting here on GitHub, head over to our [issues page](https://github.com/Tweak-Central/free-late/issues) and submit a bug there.
+We do all our bug reporting here on GitHub, head over to our [issues page](https://github.com/Tweak-Central/freelate/issues) and submit a bug there.
 
 ## Contributers
 
 Thank you to everyone who has contributed Free-translate!
 
-<a href="https://github.com/tweak-central/free-late/graphs/contributors"><img src="https://contrib.rocks/image?repo=tweak-central/free-late"></a>
+<a href="https://github.com/tweak-central/freelate/graphs/contributors"><img src="https://contrib.rocks/image?repo=tweak-central/freelate"></a>
 
 Tweak Central © 2021 - Released under the MIT License.
