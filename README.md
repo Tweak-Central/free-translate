@@ -16,7 +16,7 @@ ___
  - **Website**: Host your own version of free-translate on your website, possibly under a subdomain.
  - **Employees**: Your employees can approve other people's translations to keep things safe.
  - **Unlimited**: As it's self-hosted, you have no limits. You can have as many translations you want to have, and as many words you want to be translated.
- - **All Languages**: We support all languages, meaning every languages is able to be translated for your company.
+ - **All Languages**: We support all languages, meaning every language is able to be translated for your company.
  - **Moderation**: Moderation is built-in, you won't have people trying to create fake translations. You can block them from making anymore damage.
 
 ## Found a bug?
