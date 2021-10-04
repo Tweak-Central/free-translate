@@ -1,24 +1,30 @@
-import dotenv from "dotenv";
+const dotenv = require("dotenv");
 dotenv.config();
 
-import express from "express";
-import cors from "cors";
-import morgan from "morgan";
-import compression from "compression";
+const express = require("express");
+const cors = require("cors");
+const morgan = require("morgan");
+const compression = require("compression");
 
-import createRoutes from "./routes/index.js";
+const createRoutes = require("./routes");
+const sequelize = require("./models");
 
-const port = process.env.PORT;
-const app = new express();
+(async () => {
+    const port = process.env.PORT;
+    const app = new express();
 
-app.use(morgan("tiny"));
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(compression());
+    app.set("sequelize", sequelize);
+    await sequelize.sync({ alter: true });
 
-createRoutes(app);
+    app.use(morgan("tiny"));
+    app.use(cors());
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
+    app.use(compression());
 
-app.listen(port, () => {
-    console.log(`INFO: Listening on port ${port}`);
-});
+    createRoutes(app);
+
+    app.listen(port, () => {
+        console.log(`INFO: Listening on port ${port}`);
+    });
+})();

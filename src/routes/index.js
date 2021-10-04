@@ -1,7 +1,12 @@
-export default function createRoutes(app) {
-    app.get("/", (req, res) => {
-        res.status(200).json({
-            status: "online",
-        });
-    });
-}
+const express = require("express");
+
+const api = require("./api");
+
+module.exports = (app) => {
+    // API
+    app.use("/api", api);
+
+    // Handle front-end requests
+
+    app.use(express.static("../../client/dist"));
+};
