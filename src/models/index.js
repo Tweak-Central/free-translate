@@ -4,7 +4,7 @@ const sequelize = new Sequelize(process.env.DATABASE, {
     dialect: "mysql",
 });
 
-const models = [
+const modelDefiners = [
     require("./user"),
     require("./project"),
     require("./translation"),
@@ -12,8 +12,11 @@ const models = [
     require("./permission"),
 ];
 
-for (let model of models) {
+for (let model of modelDefiners) {
     model(sequelize);
 }
+
+// Relations
+const models = sequelize.models;
 
 module.exports = sequelize;
