@@ -9,6 +9,11 @@ const errors = [
         key: "NOT_FOUND",
         message: "The requested endpoint was not found.",
     },
+    {
+        http_key: 409,
+        key: "CONFLICT",
+        message: "A conflict occurred while handling the request.",
+    },
 ];
 
 module.exports = {
