@@ -15,7 +15,7 @@ route.get("/", (req, res) => {
 route.use("/user", user);
 
 // 404
-route.get("/*", (req, res) => {
+route.all("/*", (req, res) => {
     res.status(404).json({
         success: false,
         ...errors.getError(404),
