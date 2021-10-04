@@ -1,5 +1,7 @@
+const jwt = require("jsonwebtoken");
 const errors = require("../errors");
 const validators = require("../validators");
+const jwtSecret = process.env.JWT_SECRET || "freelate001$$";
 
 module.exports = {
     validateRegister(req, res, next) {
@@ -26,5 +28,15 @@ module.exports = {
         }
 
         next();
+    },
+    isLoggedIn(req, res, next) {
+        try {
+            const loginToken = req.headers.authorization.split(" ")[1];
+            const decoded = jwt.verify(loginToken, jwtSecret);
+            req.userData = decoded;
+            next();
+        } catch (err) {
+            return errors.resError(res, errors.getError(401, "Invalid session."));
+        }
     },
 };

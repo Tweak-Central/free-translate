@@ -5,6 +5,11 @@ const errors = [
         message: "The request is invalid.",
     },
     {
+        http_key: 401,
+        key: "UNAUTHORIZED",
+        message: "The request was not authorized / authorization failed.",
+    },
+    {
         http_key: 404,
         key: "NOT_FOUND",
         message: "The requested endpoint was not found.",
@@ -36,7 +41,6 @@ module.exports = {
             return null;
         } else {
             for (let error of errors) {
-                console.log(error);
                 if (error.http_key == errorKey) {
                     return {
                         error: error.key,
