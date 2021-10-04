@@ -22,8 +22,8 @@ module.exports = async (req, res) => {
 
     const loginToken = jwt.sign(
         {
+            id: user.get("id"),
             username: user.get("username"),
-            userId: user.get("id"),
         },
         jwtSecret,
         {
