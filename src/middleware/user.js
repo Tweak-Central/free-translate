@@ -33,7 +33,7 @@ module.exports = {
         try {
             const loginToken = req.headers.authorization.split(" ")[1];
             const decoded = jwt.verify(loginToken, jwtSecret);
-            req.userData = decoded;
+            req.user = decoded;
             next();
         } catch (err) {
             return errors.resError(res, errors.getError(401, "Invalid session."));
