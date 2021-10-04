@@ -20,7 +20,7 @@ module.exports = {
             return errors.resError(res, errors.getError(400, "Please select a valid mode"));
         }
 
-        if (res.body.mode == "multi") {
+        if (req.body.mode == "multi") {
             return errors.resError(
                 res,
                 errors.getError(400, "The multi-file mode ist still in development")
