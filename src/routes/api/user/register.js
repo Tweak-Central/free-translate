@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const sequelize = require("sequelize");
+const gravatar = require("gravatar");
 const errors = require("../../../errors");
 const { models } = require("../../../models");
 
@@ -18,15 +19,21 @@ module.exports = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+    const profilePicture = gravatar.url(email, { size: 100 }, true);
 
-    await models.User.create({
+    const newUser = await models.User.create({
         username: username,
         email: email,
         password: hashedPassword,
-        registered: sequelize.fn("NOW"),
+        picture: profilePicture,
     });
 
     res.status(201).json({
         success: true,
+        user: {
+            username: newUser.get("username"),
+            email: newUser.get("email"),
+            picture: newUser.get("picture"),
+        },
     });
 };

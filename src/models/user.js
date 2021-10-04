@@ -15,17 +15,23 @@ module.exports = function (sequelize) {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-            password: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
             email: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
+            password: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            picture: {
+                type: DataTypes.TEXT,
+                allowNull: true,
+                defaultValue: "/api/assets/images/user.svg",
+            },
             registered: {
                 type: DataTypes.DATE,
                 allowNull: false,
+                defaultValue: DataTypes.NOW,
             },
             lastLogin: {
                 type: DataTypes.DATE,

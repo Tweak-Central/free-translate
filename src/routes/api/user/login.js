@@ -38,6 +38,8 @@ module.exports = async (req, res) => {
         token: loginToken,
         user: {
             username: user.get("username"),
+            email: user.get("email"),
+            picture: user.get("picture"),
         },
     });
 };
