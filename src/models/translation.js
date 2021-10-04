@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-    sequelize.define(
+    return sequelize.define(
         "Translation",
         {
             id: {
@@ -42,6 +42,10 @@ module.exports = (sequelize) => {
             },
             approved: {
                 type: DataTypes.UUID,
+                allowNull: true,
+            },
+            approvedOn: {
+                type: DataTypes.DATE,
                 allowNull: true,
             },
         },

@@ -4,7 +4,7 @@ const { DataTypes, Sequelize } = require("sequelize");
  * @param {Sequelize} sequelize
  */
 module.exports = (sequelize) => {
-    sequelize.define(
+    return sequelize.define(
         "BlockedUser",
         {
             id: {

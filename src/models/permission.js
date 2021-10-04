@@ -7,14 +7,15 @@ Access levels:
  - 2: read/write
  - 3: approve
  - 4: manage
- - 5: owner
+ - 5: admin
+ - 6: owner
 */
 
 /**
  * @param {Sequelize} sequelize
  */
 module.exports = (sequelize) => {
-    sequelize.define(
+    return sequelize.define(
         "Permission",
         {
             id: {
