@@ -25,7 +25,7 @@ We do all our bug reporting here on GitHub, head over to our [issues page](https
 
 ## Contributers
 
-Thank you to everyone who has contributed Free-translate!
+Thank you to everyone who has contributed Freelate!
 
 <a href="https://github.com/tweak-central/freelate/graphs/contributors"><img src="https://contrib.rocks/image?repo=tweak-central/freelate"></a>
 
