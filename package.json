@@ -1,0 +1,24 @@
+{
+    "name": "freelate",
+    "version": "1.0.0",
+    "description": "📋 Free-translate is an open-source translation website which makes it easier for companies to support multiples languages.",
+    "main": "src/index.js",
+    "type": "module",
+    "repository": "https://github.com/Tweak-Central/freelate.git",
+    "author": "Matix-Media <support@matix-media.net>",
+    "license": "MIT",
+    "scripts": {
+        "serve": "nodemon ."
+    },
+    "dependencies": {
+        "@vue/cli": "^4.5.13",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "morgan": "^1.10.0",
+        "sequelize": "^6.6.5"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.13"
+    }
+}
