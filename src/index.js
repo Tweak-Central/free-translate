@@ -6,7 +6,8 @@ const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const compression = require("compression");
 
-const logger = require("./config/logger");
+const log = require("log4js").getLogger("server");
+const logger = require("./config/httpLogger");
 
 const createRoutes = require("./routes");
 const sequelize = require("./models");
@@ -28,6 +29,6 @@ const sequelize = require("./models");
     createRoutes(app);
 
     app.listen(port, () => {
-        console.log(`INFO: Listening on port ${port}`);
+        log.info(`INFO: Listening on port ${port}`);
     });
 })();

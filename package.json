@@ -19,12 +19,12 @@
         "express-fileupload": "^1.2.1",
         "gravatar": "^1.8.2",
         "jsonwebtoken": "^8.5.1",
+        "log4js": "^6.3.0",
         "morgan": "^1.10.0",
         "mysql2": "^2.3.0",
         "rotating-file-stream": "^2.1.6",
         "sequelize": "^6.6.5",
-        "uuid": "^8.3.2",
-        "winston": "^3.3.3"
+        "uuid": "^8.3.2"
     },
     "devDependencies": {
         "nodemon": "^2.0.13"

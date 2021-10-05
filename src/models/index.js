@@ -1,10 +1,9 @@
 const { Sequelize } = require("sequelize");
-const morgan = require("morgan");
-const logger = require("../config/db-logger");
+const logger = require("log4js").getLogger("database");
 
 const sequelize = new Sequelize(process.env.DATABASE, {
     dialect: "mysql",
-    logging: logger.info,
+    logging: (msg) => logger.info(msg),
 });
 
 const modelDefiners = [
