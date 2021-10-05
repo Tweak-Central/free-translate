@@ -20,10 +20,6 @@ module.exports = {
             );
         }
 
-        if (!req.body.mode || !["single", "multi"].includes(req.body.mode)) {
-            return errors.resError(res, errors.getError(400, "Please select a valid mode"));
-        }
-
         if (req.body.mode == "multi") {
             return errors.resError(
                 res,
