@@ -3,6 +3,8 @@ const sequelize = require("sequelize");
 const gravatar = require("gravatar");
 const errors = require("../../../errors");
 const { models } = require("../../../models");
+const jwt = require("jsonwebtoken");
+const jwtSecret = process.env.JWT_SECRET || "freelate001$$";
 
 module.exports = async (req, res) => {
     const username = req.body.username;
@@ -26,10 +28,18 @@ module.exports = async (req, res) => {
         email: email,
         password: hashedPassword,
         picture: profilePicture,
+        lastLogin: sequelize.fn("NOW"),
     });
+
+    const loginToken = jwt.sign(
+        { id: newUser.get("id"), username: newUser.get("username") },
+        jwtSecret,
+        { expiresIn: "7d" }
+    );
 
     res.status(201).json({
         success: true,
+        token: loginToken,
         user: {
             username: newUser.get("username"),
             email: newUser.get("email"),

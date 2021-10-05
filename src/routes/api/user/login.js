@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
         }
     );
 
-    await user.update("lastLogin", sequelize.fn("NOW"));
+    await user.update({ lastLogin: sequelize.fn("NOW") });
 
     res.status(200).json({
         success: true,
