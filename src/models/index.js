@@ -40,6 +40,8 @@ models.BlockedUser.belongsTo(models.User, { foreignKey: "blockedUser" });
 models.BlockedUser.belongsTo(models.User, { foreignKey: "blockedBy" });
 models.BlockedUser.belongsTo(models.Project, { foreignKey: "project" });
 
+models.File.belongsTo(models.Project, { foreignKey: "project" });
+
 // EXPORT
 
 module.exports = sequelize;
