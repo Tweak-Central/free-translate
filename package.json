@@ -23,7 +23,8 @@
         "mysql2": "^2.3.0",
         "rotating-file-stream": "^2.1.6",
         "sequelize": "^6.6.5",
-        "uuid": "^8.3.2"
+        "uuid": "^8.3.2",
+        "winston": "^3.3.3"
     },
     "devDependencies": {
         "nodemon": "^2.0.13"
