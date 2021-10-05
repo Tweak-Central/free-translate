@@ -19,6 +19,11 @@ const errors = [
         key: "CONFLICT",
         message: "A conflict occurred while handling the request.",
     },
+    {
+        http_key: 500,
+        key: "INTERNAL_SERVER_ERROR",
+        message: "An internal server error occurred while handling your request.",
+    },
 ];
 
 module.exports = {
