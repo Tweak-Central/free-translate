@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const errors = require("../errors");
 const validators = require("../validators");
+const { models } = require("../models");
 const jwtSecret = process.env.JWT_SECRET || "freelate001$$";
 
 module.exports = {
@@ -29,11 +30,19 @@ module.exports = {
 
         next();
     },
-    isLoggedIn(req, res, next) {
+    async isLoggedIn(req, res, next) {
         try {
             const loginToken = req.headers.authorization.split(" ")[1];
             const decoded = jwt.verify(loginToken, jwtSecret);
-            req.user = decoded;
+
+            const user = await models.User.findOne({ where: { id: decoded.id } });
+
+            if (!user) {
+                return errors.resError(res, errors.getError(401, "Invalid session."));
+            }
+
+            req.user = user;
+
             next();
         } catch (err) {
             return errors.resError(res, errors.getError(401, "Invalid session."));

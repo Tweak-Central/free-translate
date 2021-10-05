@@ -1,4 +1,8 @@
 const errors = require("../errors");
+const { models } = require("../models");
+const { Op } = require("sequelize");
+
+const userMiddleware = require("./user");
 
 module.exports = {
     validateCreation(req, res, next) {
@@ -28,5 +32,26 @@ module.exports = {
         }
 
         next();
+    },
+    validateUserAccess(requiredLevel) {
+        return [
+            userMiddleware.isLoggedIn,
+            async (req, res, next) => {
+                const perm = await models.Permission.findOne({
+                    where: {
+                        user: req.user.get("id"),
+                        accessLevel: { [Op.gte]: requiredLevel },
+                        project: req.body.project,
+                    },
+                });
+                if (!perm) {
+                    return errors.resError(
+                        res,
+                        errors.getError(401, "You do not have access to the provided project")
+                    );
+                }
+                next();
+            },
+        ];
     },
 };
