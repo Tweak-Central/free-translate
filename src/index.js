@@ -3,8 +3,10 @@ dotenv.config();
 
 const express = require("express");
 const cors = require("cors");
-const morgan = require("morgan");
+const fileUpload = require("express-fileupload");
 const compression = require("compression");
+
+const logger = require("./config/logger");
 
 const createRoutes = require("./routes");
 const sequelize = require("./models");
@@ -14,10 +16,11 @@ const sequelize = require("./models");
     const app = new express();
 
     app.set("sequelize", sequelize);
-    await sequelize.sync({ alter: true });
+    await sequelize.sync();
 
-    app.use(morgan("tiny"));
+    app.use(logger);
     app.use(cors());
+    app.use(fileUpload({ createParentPath: true }));
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(compression());
