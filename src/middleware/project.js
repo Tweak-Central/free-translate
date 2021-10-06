@@ -29,24 +29,28 @@ module.exports = {
 
         next();
     },
-    validateUserAccess(requiredLevel) {
+    validateUserAccess(requiredLevel = null) {
         return [
             userMiddleware.isLoggedIn,
             async (req, res, next) => {
-                const perm = await models.Permission.findOne({
-                    where: {
-                        user: req.user.get("id"),
-                        accessLevel: { [Op.gte]: requiredLevel },
-                        project: req.body.project,
-                    },
-                });
-                if (!perm) {
-                    return errors.resError(
-                        res,
-                        errors.getError(401, "You do not have access to the provided project")
-                    );
+                if (requiredLevel == null) {
+                    next();
+                } else {
+                    const perm = await models.Permission.findOne({
+                        where: {
+                            user: req.user.get("id"),
+                            accessLevel: { [Op.gte]: requiredLevel },
+                            project: req.body.project,
+                        },
+                    });
+                    if (!perm) {
+                        return errors.resError(
+                            res,
+                            errors.getError(401, "You do not have access to the provided project")
+                        );
+                    }
+                    next();
                 }
-                next();
             },
         ];
     },
