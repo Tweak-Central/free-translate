@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const errors = require("../../errors");
 
+const languages = require("./languages");
 const user = require("./user");
 const project = require("./project");
 
@@ -12,6 +13,8 @@ route.get("/", (req, res) => {
         status: "online",
     });
 });
+
+route.get("/languages", languages);
 
 route.use("/user", user);
 route.use("/project", project);
