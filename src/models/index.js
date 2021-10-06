@@ -32,13 +32,13 @@ models.Permission.belongsTo(models.Project, {
 models.Translation.belongsTo(models.Project, {
     foreignKey: "project",
 });
-models.Translation.belongsTo(models.User, { foreignKey: "author" });
-models.Translation.belongsTo(models.User, { foreignKey: "approved" });
-models.Translation.belongsTo(models.File, { foreignKey: "file" });
+models.Translation.belongsTo(models.User, { foreignKey: "author", onDelete: "cascade" });
+models.Translation.belongsTo(models.User, { foreignKey: "approved", onDelete: "cascade" });
+models.Translation.belongsTo(models.File, { foreignKey: "file", onDelete: "cascade" });
 
-models.BlockedUser.belongsTo(models.User, { foreignKey: "blockedUser" });
-models.BlockedUser.belongsTo(models.User, { foreignKey: "blockedBy" });
-models.BlockedUser.belongsTo(models.Project, { foreignKey: "project" });
+models.BlockedUser.belongsTo(models.User, { foreignKey: "blockedUser", onDelete: "cascade" });
+models.BlockedUser.belongsTo(models.User, { foreignKey: "blockedBy", onDelete: "cascade" });
+models.BlockedUser.belongsTo(models.Project, { foreignKey: "project", onDelete: "cascade" });
 
 models.File.belongsTo(models.Project, { foreignKey: "project" });
 
