@@ -59,7 +59,7 @@ module.exports = {
     /**
      * Build response error object from error object returned from getError
      * @param {Express.Response} res Response object provided by express
-     * @param {{error: string, message: string}} error Error object returned from getError
+     * @param {{error: string, message: string, http_key?: number}} error Error object returned from getError
      * @returns Error object that can be returned as result
      */
     resError(res, error) {
