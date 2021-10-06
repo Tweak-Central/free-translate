@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
         return errors.resError(res, errors.getError(400, "Please upload the sources file"));
 
     const sourcesFile = req.files.sources;
-    const projectId = req.body.project || null;
+    const projectId = req.params.projectId;
     const mode = req.body.mode;
     const overwrite = req.body.overwrite ? req.body.overwrite == "true" : false;
 
@@ -17,8 +17,6 @@ module.exports = async (req, res) => {
 
     if (!mode || !["single", "multi"].includes(mode))
         return errors.resError(res, errors.getError(400, "Please select a valid mode"));
-
-    console.log("File mode:", mode);
 
     const project = await models.Project.findOne({ where: { id: projectId } });
     if (!project)
@@ -69,9 +67,7 @@ module.exports = async (req, res) => {
             mode: mode,
         });
 
-    logger.debug(
-        `Inserting ${keys.length} translations (Overwrite: ${overwrite})... This might take a while`
-    );
+    logger.debug(`Inserting ${keys.length} translations (Overwrite: ${overwrite})`);
 
     for (let translation of keys) {
         translation.project = project.get("id");
@@ -96,12 +92,19 @@ module.exports = async (req, res) => {
             },
         });
 
-        console.log(existingKeys);
-
         for (let key of keys) {
-            if (!existingKeys.some((e) => e.get("key") == key.key)) uniqueKeys.push(key);
+            let keyExists = false;
+            for (let existingKey of existingKeys) {
+                if (
+                    existingKey.get("key") === key.key &&
+                    existingKey.get("language") == key.language
+                ) {
+                    keyExists = true;
+                    break;
+                }
+            }
+            if (!keyExists) uniqueKeys.push(key);
         }
-
         await models.Translation.bulkCreate(uniqueKeys);
 
         inserted = uniqueKeys.length;
