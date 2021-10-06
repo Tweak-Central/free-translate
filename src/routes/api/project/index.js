@@ -8,7 +8,7 @@ const create = require("./create");
 
 const route = Router();
 
-route.use("/file", file);
+route.use("/:projectId/file", file);
 
 route.post("/create", isLoggedIn, projectMiddleware.validateCreation, create);
 
