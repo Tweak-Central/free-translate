@@ -27,6 +27,13 @@ module.exports = {
             );
         }
 
+        if (!req.body.private || typeof req.body.private != "boolean") {
+            return errors.resError(
+                res,
+                errors.getError(400, "Please select the visibility of your project")
+            );
+        }
+
         next();
     },
     validateUserAccess(requiredLevel = null) {
