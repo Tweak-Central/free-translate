@@ -41,6 +41,13 @@ module.exports = {
             );
         }
 
+        if (req.body.targetLanguages && !req.body.targetLanguages.languages) {
+            return errors.resError(
+                res,
+                errors.getError(400, "Please specify the target languages as any array")
+            );
+        }
+
         next();
     },
     validateUserAccess(requiredLevel = null) {
