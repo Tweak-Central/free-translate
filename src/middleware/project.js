@@ -46,12 +46,14 @@ module.exports = {
                         project: req.params.projectId,
                     },
                 });
+                const project = await models.Project.findOne({
+                    where: {
+                        id: req.params.projectId,
+                    },
+                });
+                req.project = project;
+
                 if (requiredLevel == null) {
-                    const project = await models.Project.findOne({
-                        where: {
-                            id: req.params.projectId,
-                        },
-                    });
                     if (!project || (project.get("private") && perm.get("accessLevel") < 1)) {
                         return errors.resError(
                             res,
