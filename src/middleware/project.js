@@ -52,7 +52,7 @@ module.exports = {
                             id: req.params.projectId,
                         },
                     });
-                    if (project.get("private") && perm.get("accessLevel") < 1) {
+                    if (!project || (project.get("private") && perm.get("accessLevel") < 1)) {
                         return errors.resError(
                             res,
                             errors.getError(401, "You do not have access to the provided project")
