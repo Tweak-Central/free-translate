@@ -1,5 +1,8 @@
 const { DataTypes } = require("sequelize");
 
+/**
+ * @param {Sequelize} sequelize
+ */
 module.exports = (sequelize) => {
     return sequelize.define(
         "Translation",
