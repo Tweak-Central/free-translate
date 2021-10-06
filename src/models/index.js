@@ -13,6 +13,7 @@ const modelDefiners = [
     require("./file"),
     require("./blockedUser"),
     require("./permission"),
+    require("./language"),
 ];
 
 for (let model of modelDefiners) {
@@ -40,7 +41,9 @@ models.BlockedUser.belongsTo(models.User, { foreignKey: "blockedUser", onDelete:
 models.BlockedUser.belongsTo(models.User, { foreignKey: "blockedBy", onDelete: "cascade" });
 models.BlockedUser.belongsTo(models.Project, { foreignKey: "project", onDelete: "cascade" });
 
-models.File.belongsTo(models.Project, { foreignKey: "project" });
+models.File.belongsTo(models.Project, { foreignKey: "project", onDelete: "cascade" });
+
+models.Language.belongsTo(models.Project, { foreignKey: "project", onDelete: "cascade" });
 
 // EXPORT
 
