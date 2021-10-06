@@ -23,7 +23,7 @@ ___
 
 We do all our bug reporting here on GitHub, head over to our [issues page](https://github.com/Tweak-Central/freelate/issues) and submit a bug there.
 
-## Contributers
+## Contributors
 
 Thank you to everyone who has contributed Freelate!
 
