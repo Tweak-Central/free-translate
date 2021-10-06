@@ -5,6 +5,7 @@ module.exports = async (req, res) => {
     const name = req.body.name;
     const description = req.body.description;
     const mode = req.body.mode;
+    const private = req.body.private;
 
     const projectExists = await models.Project.findOne({
         where: { name: name },
@@ -21,6 +22,7 @@ module.exports = async (req, res) => {
         name,
         description,
         mode,
+        private,
     });
 
     await models.Permission.create({
