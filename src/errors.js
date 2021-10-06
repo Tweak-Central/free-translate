@@ -40,6 +40,7 @@ module.exports = {
                     return {
                         error: error.key,
                         message: customMessage ? customMessage : error.message,
+                        http_key: error.http_key,
                     };
                 }
             }
@@ -50,6 +51,7 @@ module.exports = {
                     return {
                         error: error.key,
                         message: customMessage ? customMessage : error.message,
+                        http_key: error.http_key,
                     };
                 }
             }
