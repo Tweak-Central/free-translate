@@ -40,8 +40,25 @@ module.exports = {
         return [
             userMiddleware.isLoggedIn,
             async (req, res, next) => {
+                const perm = await models.Permission.findOne({
+                    where: {
+                        user: req.user.get("id"),
+                        project: req.body.project,
+                    },
+                });
+
                 if (requiredLevel == null) {
-                    next();
+                    const project = await models.Project.findOne({
+                        where: {
+                            id: req.params.projectId,
+                        },
+                    });
+                    if (project.get("private") && perm.get("accessLevel") < 1) {
+                        return errors.resError(
+                            res,
+                            errors.getError(401, "You do not have access to the provided project")
+                        );
+                    }
                 } else {
                     const perm = await models.Permission.findOne({
                         where: {
@@ -50,7 +67,7 @@ module.exports = {
                             project: req.body.project,
                         },
                     });
-                    if (!perm) {
+                    if (!perm || perm.get("accessLevel") < requiredLevel) {
                         return errors.resError(
                             res,
                             errors.getError(401, "You do not have access to the provided project")
