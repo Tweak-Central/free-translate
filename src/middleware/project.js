@@ -60,8 +60,14 @@ module.exports = {
                 });
                 req.project = project;
 
+                if (!project)
+                    return errors.resError(
+                        res,
+                        errors.getError(404, "The specified project was not found")
+                    );
+
                 if (requiredLevel == null) {
-                    if (!project || (project.get("private") && perm.get("accessLevel") < 1)) {
+                    if (project.get("private") && perm.get("accessLevel") < 1) {
                         return errors.resError(
                             res,
                             errors.getError(401, "You do not have access to the provided project")
