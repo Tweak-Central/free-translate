@@ -34,6 +34,13 @@ module.exports = {
             );
         }
 
+        if (!req.body.sourceLanguage) {
+            return errors.resError(
+                res,
+                errors.getError(400, "Please enter the source language of your project")
+            );
+        }
+
         next();
     },
     validateUserAccess(requiredLevel = null) {

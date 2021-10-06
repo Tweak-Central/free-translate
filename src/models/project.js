@@ -19,6 +19,10 @@ module.exports = (sequelize) => {
                 type: DataTypes.TEXT,
                 allowNull: true,
             },
+            sourceLanguage: {
+                type: DataTypes.STRING(10),
+                allowNull: false,
+            },
             private: {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,

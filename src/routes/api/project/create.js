@@ -4,6 +4,7 @@ const { models } = require("../../../models");
 module.exports = async (req, res) => {
     const name = req.body.name;
     const description = req.body.description;
+    const sourceLanguage = req.body.sourceLanguage;
     const mode = req.body.mode;
     const private = req.body.private;
 
@@ -21,6 +22,7 @@ module.exports = async (req, res) => {
     const newProject = await models.Project.create({
         name,
         description,
+        sourceLanguage,
         mode,
         private,
     });
