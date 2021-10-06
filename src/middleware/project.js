@@ -27,7 +27,7 @@ module.exports = {
             );
         }
 
-        if (!req.body.private || typeof req.body.private != "boolean") {
+        if (typeof req.body.private != "boolean") {
             return errors.resError(
                 res,
                 errors.getError(400, "Please select the visibility of your project")
@@ -43,10 +43,9 @@ module.exports = {
                 const perm = await models.Permission.findOne({
                     where: {
                         user: req.user.get("id"),
-                        project: req.body.project,
+                        project: req.params.projectId,
                     },
                 });
-
                 if (requiredLevel == null) {
                     const project = await models.Project.findOne({
                         where: {
@@ -59,14 +58,8 @@ module.exports = {
                             errors.getError(401, "You do not have access to the provided project")
                         );
                     }
+                    next();
                 } else {
-                    const perm = await models.Permission.findOne({
-                        where: {
-                            user: req.user.get("id"),
-                            accessLevel: { [Op.gte]: requiredLevel },
-                            project: req.body.project,
-                        },
-                    });
                     if (!perm || perm.get("accessLevel") < requiredLevel) {
                         return errors.resError(
                             res,
