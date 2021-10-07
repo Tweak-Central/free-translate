@@ -25,25 +25,28 @@ const models = sequelize.models;
 
 models.Permission.belongsTo(models.User, {
     foreignKey: "user",
+    onDelete: "CASCADE",
 });
 models.Permission.belongsTo(models.Project, {
     foreignKey: "project",
+    onDelete: "CASCADE",
 });
 
 models.Translation.belongsTo(models.Project, {
     foreignKey: "project",
+    onDelete: "CASCADE",
 });
-models.Translation.belongsTo(models.User, { foreignKey: "author", onDelete: "cascade" });
-models.Translation.belongsTo(models.User, { foreignKey: "approved", onDelete: "cascade" });
-models.Translation.belongsTo(models.File, { foreignKey: "file", onDelete: "cascade" });
+models.Translation.belongsTo(models.User, { foreignKey: "author", onDelete: "CASCADE" });
+models.Translation.belongsTo(models.User, { foreignKey: "approved", onDelete: "CASCADE" });
+models.Translation.belongsTo(models.File, { foreignKey: "file", onDelete: "CASCADE" });
 
-models.BlockedUser.belongsTo(models.User, { foreignKey: "blockedUser", onDelete: "cascade" });
-models.BlockedUser.belongsTo(models.User, { foreignKey: "blockedBy", onDelete: "cascade" });
-models.BlockedUser.belongsTo(models.Project, { foreignKey: "project", onDelete: "cascade" });
+models.BlockedUser.belongsTo(models.User, { foreignKey: "blockedUser", onDelete: "CASCADE" });
+models.BlockedUser.belongsTo(models.User, { foreignKey: "blockedBy", onDelete: "CASCADE" });
+models.BlockedUser.belongsTo(models.Project, { foreignKey: "project", onDelete: "CASCADE" });
 
-models.File.belongsTo(models.Project, { foreignKey: "project", onDelete: "cascade" });
+models.File.belongsTo(models.Project, { foreignKey: "project", onDelete: "CASCADE" });
 
-models.Language.belongsTo(models.Project, { foreignKey: "project", onDelete: "cascade" });
+models.Language.belongsTo(models.Project, { foreignKey: "project", onDelete: "CASCADE" });
 
 // EXPORT
 
