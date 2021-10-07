@@ -19,6 +19,10 @@ module.exports = (sequelize) => {
                 type: DataTypes.TEXT,
                 allowNull: true,
             },
+            logo: {
+                type: DataTypes.STRING(200),
+                allowNull: true,
+            },
             sourceLanguage: {
                 type: DataTypes.STRING(10),
                 allowNull: false,
@@ -27,6 +31,10 @@ module.exports = (sequelize) => {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: false,
+            },
+            createdOn: {
+                type: DataTypes.DATE,
+                defaultValue: DataTypes.NOW,
             },
         },
         {
