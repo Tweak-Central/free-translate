@@ -67,7 +67,8 @@ module.exports = async (req, res) => {
 
                     if (
                         !existingTargetLanguages.includes(parts[0]) &&
-                        !newTargetLanguages.includes(parts[0])
+                        !newTargetLanguages.includes(parts[0]) &&
+                        parts[0] != project.get("sourceLanguage")
                     )
                         newTargetLanguages.push(parts[0]);
 
