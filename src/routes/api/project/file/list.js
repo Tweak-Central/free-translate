@@ -1,4 +1,5 @@
 const { models } = require("../../../../models");
+const supportedLanguages = require("../../../../supportedLanguages.json");
 
 module.exports = async (req, res) => {
     const project = req.project;
@@ -47,6 +48,13 @@ module.exports = async (req, res) => {
             on: translation.get("created"),
             id: translation.get("id"),
             by: translation.get("author"),
+            action: {
+                type: "translate",
+                to: {
+                    key: translation.get("language"),
+                    ...supportedLanguages[translation.get("language")],
+                },
+            },
         };
     }
 
